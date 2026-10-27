@@ -137,3 +137,25 @@ This prevents calling every narrow CI "inconclusive" and every wide CI "null".
 
 - This file committed to git with date before any real analysis.
 - Optionally uploaded to OSF/GitHub release for public timestamp.
+
+
+---
+
+## 15. Duplicate sample rule (fixed before application)
+
+- Compare mutation profiles between any two samples across cohorts.
+- Compute **overlap coefficient** = |intersection| / min(|A|, |B|).
+- If overlap coefficient ≥ 0.5 → treat as duplicate.
+- Rule: keep the sample from the cohort with **larger mutation set** (George WGS > WES cohorts). If equal, keep George.
+- Record all removed duplicates and their overlap coefficients.
+- Apply the same rule to all pairs, including within-cohort.
+
+---
+
+## 16. Model deviation note
+
+- Original pre-registration specified GLMM with random intercept on cohort.
+- With only 3 cohorts, cohort variance is not estimable.
+- **Deviation:** cohort as fixed effect; clustering by sample via GEE with exchangeable correlation, or GLMM with random intercept on sample only.
+- This deviation is recorded here before real data analysis.
+- Main coefficient unchanged: log OR per 1 SD SBS4 fraction.
